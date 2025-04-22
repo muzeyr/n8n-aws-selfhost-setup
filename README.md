@@ -22,8 +22,8 @@ Script ile birlikte Docker, Nginx, SSL (Let's Encrypt) ve n8n kurulumu tek komut
 2. Script dosyasını oluşturun:
    ```bash
    nano setup-n8n.sh
-```
-   → Bu repodaki setup-n8n.sh içeriğini yapıştırın ve kaydedin.
+   ```
+→ Bu repodaki setup-n8n.sh içeriğini yapıştırın ve kaydedin.
 
 Script’i çalıştırılabilir yapın:
 
