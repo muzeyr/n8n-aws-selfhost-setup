@@ -1,40 +1,69 @@
-# 🚀 n8n AWS Self-Hosting Kurulum Scripti
+### 📄 `README.md` (Yapıştırmaya Hazır – Türkçe)
 
-Bu proje, AWS üzerinde **n8n**'i hızlı ve otomatik bir şekilde kurmak isteyenler için hazırlanmış bir `setup-n8n.sh` betiğidir.  
-Script ile birlikte Docker, Nginx, SSL (Let's Encrypt) ve n8n kurulumu tek komutla yapılabilir.
+# 🚀 n8n AWS Self-Hosting Otomatik Kurulum Scripti
 
----
+Bu repoda, AWS EC2 sunucusu üzerinde **n8n**'i hızlıca kurabilmeniz için hazırladığım `setup-n8n.sh` adlı otomatik kurulum scripti yer almaktadır.
 
-## 📦 Özellikler
-
-- AWS EC2 (Amazon Linux 2023) üzerinde çalışır
-- Docker kurulumu ve başlatılması
-- Nginx kurulumu ve yapılandırılması
-- SSL (Let's Encrypt) kurulumu
-- n8n Docker container başlatılması
-- SSL otomatik yenileme cron job'u
+Script hem **subdomain** (örnek: `n8n.orneksite.com`) hem de **public IP adresi** ile çalışacak şekilde yapılandırılmıştır. Domain girerseniz **Let's Encrypt ile SSL kurulumu** yapılır, sadece IP adresi girerseniz **HTTP üzerinden** hızlı kurulum yapılır.
 
 ---
 
-## ⚙️ Kurulum Adımları
+## 📌 Neler Yapıyor?
 
-1. Sunucunuza SSH ile bağlanın
-2. Script dosyasını oluşturun:
-   ```bash
-   nano setup-n8n.sh
-   ```
-→ Bu repodaki setup-n8n.sh içeriğini yapıştırın ve kaydedin.
+- Amazon Linux 2023 üzerinde:
+  - `nginx` kurulumu ve ayarları
+  - `docker` kurulumu ve kullanıcı izinleri
+  - Let's Encrypt ile SSL sertifikası (subdomain verilirse)
+  - n8n container kurulumu
+  - SSL için otomatik yenileme cron job’u
+  - IP ya da domain'e göre ortam değişkenleri ayarı
 
-Script’i çalıştırılabilir yapın:
+---
+
+## 💻 Gereksinimler
+
+- AWS EC2'de çalışan bir Amazon Linux 2023 AMI
+- Açık 80 ve 443 portları
+- (Opsiyonel) Subdomain ve yönlendirilmiş A kaydı
+- Sabit IP kullanacaksanız: Elastic IP önerilir
+
+---
+
+## ⚙️ Kurulum
+
+### 1️⃣ Reposu Klonla
+
+```bash
+git clone https://github.com/kullaniciadi/n8n-aws-selfhost-setup.git
+cd n8n-aws-selfhost-setup
+```
+
+> Not: `kullaniciadi` yerine GitHub kullanıcı adınızı yazmalısınız.
+
+### 2️⃣ Scripti Çalıştırılabilir Yap
 
 ```bash
 chmod +x setup-n8n.sh
 ```
-Script’i çalıştırın:
+
+### 3️⃣ Scripti Başlat
 
 ```bash
 ./setup-n8n.sh
 ```
-Script sizden domain adınızı soracak (örnek: n8n.seninwebsiten.com)
 
+Script sizden:
 
+- Subdomain adresinizi (örnek: `n8n.orneksite.com`)
+- AWS EC2 Public IP adresinizi (örnek: `3.121.45.67`)
+
+isteyecek ve ardından kurulumu başlatacaktır.
+
+Subdomain girerseniz HTTPS, sadece IP girerseniz HTTP kurulumu yapılır.
+
+## 🌐 Erişim
+
+Kurulum tamamlandığında n8n'e şu şekilde erişebilirsiniz:
+
+- Subdomain ile: `https://n8n.orneksite.com` ✅
+- Sadece IP ile: `http://3.121.45.67` ⚠️ (SSL'siz)
