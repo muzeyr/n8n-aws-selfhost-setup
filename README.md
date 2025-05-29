@@ -34,11 +34,11 @@ Script hem **subdomain** (örnek: `n8n.orneksite.com`) hem de **public IP adresi
 ### 1️⃣ Reposu Klonla
 
 ```bash
-git clone https://github.com/kullaniciadi/n8n-aws-selfhost-setup.git
+git clone https://github.com/muzeyr/n8n-aws-selfhost-setup.git
 cd n8n-aws-selfhost-setup
 ```
 
-> Not: `kullaniciadi` yerine GitHub kullanıcı adınızı yazmalısınız.
+> Not: `muzeyr` yerine GitHub kullanıcı adınızı yazmalısınız.
 
 ### 2️⃣ Scripti Çalıştırılabilir Yap
 
